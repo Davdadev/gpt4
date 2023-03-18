@@ -112,7 +112,7 @@ with gr.Blocks(css = """#col_container { margin-left: auto; margin-right: auto;}
     gr.HTML(title)
     gr.HTML('''<center><a href="https://huggingface.co/spaces/ysharma/ChatGPT4?duplicate=true"><img src="https://bit.ly/3gLdBN6" alt="Duplicate Space"></a>Duplicate the Space and run securely with your OpenAI API Key</center>''')
     with gr.Column(elem_id = "col_container"):
-        openai_api_key = gr.Textbox(type='password', label="Enter your OpenAI API key here")
+        openai_api_key = gr.Textbox(type='password', label="Enter only your GPT4 OpenAI API key here")
         chatbot = gr.Chatbot(elem_id='chatbot') #c
         inputs = gr.Textbox(placeholder= "Hi there!", label= "Type an input and press Enter") #t
         state = gr.State([]) #s
