@@ -1,5 +1,5 @@
 ---
-title: Chat with GPT4
+title: Chat-with-GPT4
 emoji: 🚀
 colorFrom: red
 colorTo: indigo
