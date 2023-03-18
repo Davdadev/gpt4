@@ -103,9 +103,10 @@ Assistant: <utterance>
 ```
 In this app, you can explore the outputs of a gpt-4 LLM.
 """
-                
+theme = gr.themes.Default(primary_hue="green")                
 with gr.Blocks(css = """#col_container {width: 1000px; margin-left: auto; margin-right: auto;}
-                #chatbot {height: 520px; overflow: auto;}""") as demo:
+                #chatbot {height: 520px; overflow: auto;}""",
+              theme=theme) as demo:
     gr.HTML(title)
     gr.HTML('''<center><a href="https://huggingface.co/spaces/ysharma/ChatGPT4?duplicate=true"><img src="https://bit.ly/3gLdBN6" alt="Duplicate Space"></a>Duplicate the Space and run securely with your OpenAI API Key</center>''')
     with gr.Column(elem_id = "col_container"):
