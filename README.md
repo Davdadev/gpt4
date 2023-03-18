@@ -1,5 +1,5 @@
 ---
-title: ChatGPTwithAPI
+title: Chat with GPT4
 emoji: 🚀
 colorFrom: red
 colorTo: indigo
