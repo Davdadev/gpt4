@@ -103,7 +103,9 @@ Assistant: <utterance>
 ```
 In this app, you can explore the outputs of a gpt-4 LLM.
 """
+
 theme = gr.themes.Default(primary_hue="green")                
+
 with gr.Blocks(css = """#col_container {width: 1000px; margin-left: auto; margin-right: auto;}
                 #chatbot {height: 520px; overflow: auto;}""",
               theme=theme) as demo:
