@@ -92,7 +92,7 @@ def predict(inputs, top_p, temperature, openai_api_key, chat_counter, chatbot=[]
 def reset_textbox():
     return gr.update(value='')
 
-title = """<h1 align="center">🔥ChatGPT API 🚀Streaming🚀</h1>"""
+title = """<h1 align="center">🔥GPT4 with ChatCompletions API +🚀Gradio Streaming🚀</h1>"""
 description = """Language models can be conditioned to act like dialogue agents through a conversational prompt that typically takes the form:
 ```
 User: <utterance>
