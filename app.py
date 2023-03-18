@@ -92,7 +92,7 @@ def predict(inputs, top_p, temperature, openai_api_key, chat_counter, chatbot=[]
 def reset_textbox():
     return gr.update(value='')
 
-title = """<h1 align="center">🔥GPT4 with ChatCompletions API +🚀Gradio Streaming🚀</h1>"""
+title = """<h1 align="center">🔥GPT4 with ChatCompletions API +🚀Gradio-Streaming</h1>"""
 description = """Language models can be conditioned to act like dialogue agents through a conversational prompt that typically takes the form:
 ```
 User: <utterance>
@@ -107,7 +107,7 @@ In this app, you can explore the outputs of a gpt-4 LLM.
 with gr.Blocks(css = """#col_container {width: 1000px; margin-left: auto; margin-right: auto;}
                 #chatbot {height: 520px; overflow: auto;}""") as demo:
     gr.HTML(title)
-    gr.HTML('''<center><a href="https://huggingface.co/spaces/ysharma/ChatGPTwithAPI?duplicate=true"><img src="https://bit.ly/3gLdBN6" alt="Duplicate Space"></a>Duplicate the Space and run securely with your OpenAI API Key</center>''')
+    gr.HTML('''<center><a href="https://huggingface.co/spaces/ysharma/ChatGPT4?duplicate=true"><img src="https://bit.ly/3gLdBN6" alt="Duplicate Space"></a>Duplicate the Space and run securely with your OpenAI API Key</center>''')
     with gr.Column(elem_id = "col_container"):
         openai_api_key = gr.Textbox(type='password', label="Enter your OpenAI API key here")
         chatbot = gr.Chatbot(elem_id='chatbot') #c
