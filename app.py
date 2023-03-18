@@ -12,7 +12,7 @@ API_URL = "https://api.openai.com/v1/chat/completions" #os.getenv("API_URL") + "
 def predict(inputs, top_p, temperature, openai_api_key, chat_counter, chatbot=[], history=[]):  #repetition_penalty, top_k
 
     payload = {
-    "model": "gpt-3.5-turbo",
+    "model": "gpt-4",
     "messages": [{"role": "user", "content": f"{inputs}"}],
     "temperature" : 1.0,
     "top_p":1.0,
@@ -45,7 +45,7 @@ def predict(inputs, top_p, temperature, openai_api_key, chat_counter, chatbot=[]
         messages.append(temp3)
         #messages
         payload = {
-        "model": "gpt-3.5-turbo",
+        "model": "gpt-4",
         "messages": messages, #[{"role": "user", "content": f"{inputs}"}],
         "temperature" : temperature, #1.0,
         "top_p": top_p, #1.0,
@@ -101,7 +101,7 @@ User: <utterance>
 Assistant: <utterance>
 ...
 ```
-In this app, you can explore the outputs of a gpt-3.5-turbo LLM.
+In this app, you can explore the outputs of a gpt-4 LLM.
 """
                 
 with gr.Blocks(css = """#col_container {width: 1000px; margin-left: auto; margin-right: auto;}
