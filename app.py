@@ -120,7 +120,7 @@ with gr.Blocks(css = """#col_container { margin-left: auto; margin-right: auto;}
         state = gr.State([]) #s
         with gr.Row():
             with gr.Column(scale=7):
-                b1 = gr.Button()
+                b1 = gr.Button().style(full_width=True)
             with gr.Column(scale=3):
                 server_status_code = gr.Textbox(label="Status code from OpenAI server", )
     
