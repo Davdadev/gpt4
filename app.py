@@ -138,4 +138,4 @@ with gr.Blocks(css = """#col_container { margin-left: auto; margin-right: auto;}
     inputs.submit(reset_textbox, [], [inputs])
                     
     #gr.Markdown(description)
-    demo.queue().launch(debug=True)
+    demo.queue(max_size=20).launch(debug=True)
