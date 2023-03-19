@@ -7,9 +7,9 @@ import requests
 API_URL = "https://api.openai.com/v1/chat/completions" #os.getenv("API_URL") + "/generate_stream"
 
 #Testing with my Open AI Key 
-#OPENAI_API_KEY = os.getenv("OPENAI_API_KEY") 
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY") 
 
-def predict(inputs, top_p, temperature, openai_api_key, chat_counter, chatbot=[], history=[]):  #repetition_penalty, top_k
+def predict(inputs, top_p, temperature, chat_counter, chatbot=[], history=[]):  
 
     payload = {
     "model": "gpt-4",
@@ -24,7 +24,7 @@ def predict(inputs, top_p, temperature, openai_api_key, chat_counter, chatbot=[]
 
     headers = {
     "Content-Type": "application/json",
-    "Authorization": f"Bearer {openai_api_key}"
+    "Authorization": f"Bearer {OPENAI_API_KEY}"
     }
 
     print(f"chat_counter - {chat_counter}")
@@ -110,9 +110,10 @@ with gr.Blocks(css = """#col_container { margin-left: auto; margin-right: auto;}
                 #chatbot {height: 520px; overflow: auto;}""",
               theme=theme) as demo:
     gr.HTML(title)
+    gr.HTML("""<h3 align="center">🔥This Huggingface Gradio Demo provides you full access to GPT4 API (4096 token limit). 🎉🥳🎉You don't need any OPENAI API key🙌</h1>""")
     gr.HTML('''<center><a href="https://huggingface.co/spaces/ysharma/ChatGPT4?duplicate=true"><img src="https://bit.ly/3gLdBN6" alt="Duplicate Space"></a>Duplicate the Space and run securely with your OpenAI API Key</center>''')
     with gr.Column(elem_id = "col_container"):
-        openai_api_key = gr.Textbox(type='password', label="Enter only your GPT4 OpenAI API key here")
+        #openai_api_key = gr.Textbox(type='password', label="Enter only your GPT4 OpenAI API key here")
         chatbot = gr.Chatbot(elem_id='chatbot') #c
         inputs = gr.Textbox(placeholder= "Hi there!", label= "Type an input and press Enter") #t
         state = gr.State([]) #s
@@ -126,8 +127,8 @@ with gr.Blocks(css = """#col_container { margin-left: auto; margin-right: auto;}
             #repetition_penalty = gr.Slider( minimum=0.1, maximum=3.0, value=1.03, step=0.01, interactive=True, label="Repetition Penalty", )
             chat_counter = gr.Number(value=0, visible=False, precision=0)
 
-    inputs.submit( predict, [inputs, top_p, temperature, openai_api_key, chat_counter, chatbot, state], [chatbot, state, chat_counter],)
-    b1.click( predict, [inputs, top_p, temperature, openai_api_key, chat_counter, chatbot, state], [chatbot, state, chat_counter],)
+    inputs.submit( predict, [inputs, top_p, temperature, chat_counter, chatbot, state], [chatbot, state, chat_counter],)  #openai_api_key
+    b1.click( predict, [inputs, top_p, temperature, chat_counter, chatbot, state], [chatbot, state, chat_counter],)  #openai_api_key
     b1.click(reset_textbox, [], [inputs])
     inputs.submit(reset_textbox, [], [inputs])
                     
