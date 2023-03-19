@@ -61,7 +61,7 @@ def predict(inputs, top_p, temperature, chat_counter, chatbot=[], history=[]):
     print(f"payload is - {payload}")
     # make a POST request to the API endpoint using the requests.post method, passing in stream=True
     response = requests.post(API_URL, headers=headers, json=payload, stream=True)
-    #response = requests.post(API_URL, headers=headers, json=payload, stream=True)
+    print(f"response code - {response}")
     token_counter = 0 
     partial_words = "" 
 
