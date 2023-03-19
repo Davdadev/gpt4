@@ -86,7 +86,7 @@ def predict(inputs, top_p, temperature, chat_counter, chatbot=[], history=[]):
                 history[-1] = partial_words
               chat = [(history[i], history[i + 1]) for i in range(0, len(history) - 1, 2) ]  # convert to tuples of list
               token_counter+=1
-              yield chat, history, chat_counter  # resembles {chatbot: chat, state: history}  
+              yield chat, history, chat_counter, response  # resembles {chatbot: chat, state: history}  
                    
 
 def reset_textbox():
@@ -113,11 +113,16 @@ with gr.Blocks(css = """#col_container { margin-left: auto; margin-right: auto;}
     gr.HTML("""<h3 align="center">🔥This Huggingface Gradio Demo provides you full access to GPT4 API (4096 token limit). 🎉🥳🎉You don't need any OPENAI API key🙌</h1>""")
     gr.HTML('''<center><a href="https://huggingface.co/spaces/ysharma/ChatGPT4?duplicate=true"><img src="https://bit.ly/3gLdBN6" alt="Duplicate Space"></a>Duplicate the Space and run securely with your OpenAI API Key</center>''')
     with gr.Column(elem_id = "col_container"):
+        #GPT4 API Key is provided by Huggingface 
         #openai_api_key = gr.Textbox(type='password', label="Enter only your GPT4 OpenAI API key here")
         chatbot = gr.Chatbot(elem_id='chatbot') #c
         inputs = gr.Textbox(placeholder= "Hi there!", label= "Type an input and press Enter") #t
         state = gr.State([]) #s
-        b1 = gr.Button()
+        with gr.Row():
+            with gr.Column(scale=7):
+                b1 = gr.Button()
+            with gr.Column(scale=3):
+                server_status_code = gr.Textbox(label="Status code from OpenAI server", )
     
         #inputs, top_p, temperature, top_k, repetition_penalty
         with gr.Accordion("Parameters", open=False):
@@ -127,8 +132,8 @@ with gr.Blocks(css = """#col_container { margin-left: auto; margin-right: auto;}
             #repetition_penalty = gr.Slider( minimum=0.1, maximum=3.0, value=1.03, step=0.01, interactive=True, label="Repetition Penalty", )
             chat_counter = gr.Number(value=0, visible=False, precision=0)
 
-    inputs.submit( predict, [inputs, top_p, temperature, chat_counter, chatbot, state], [chatbot, state, chat_counter],)  #openai_api_key
-    b1.click( predict, [inputs, top_p, temperature, chat_counter, chatbot, state], [chatbot, state, chat_counter],)  #openai_api_key
+    inputs.submit( predict, [inputs, top_p, temperature, chat_counter, chatbot, state], [chatbot, state, chat_counter, server_status_code],)  #openai_api_key
+    b1.click( predict, [inputs, top_p, temperature, chat_counter, chatbot, state], [chatbot, state, chat_counter, server_status_code],)  #openai_api_key
     b1.click(reset_textbox, [], [inputs])
     inputs.submit(reset_textbox, [], [inputs])
                     
