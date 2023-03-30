@@ -190,4 +190,4 @@ with gr.Blocks(css = """#col_container { margin-left: auto; margin-right: auto;}
                 ["You are an AI poet who can compose creative and evocative poems on any given topic."],],
                 inputs = system_msg,)
         
-demo.queue(max_size=20, concurrency_count=20).launch(debug=True)
+demo.queue(max_size=99, concurrency_count=20).launch(debug=True)
