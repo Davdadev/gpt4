@@ -127,7 +127,7 @@ theme = gr.themes.Soft(primary_hue="zinc", secondary_hue="green", neutral_hue="g
 with gr.Blocks(css = """#col_container { margin-left: auto; margin-right: auto;} #chatbot {height: 520px; overflow: auto;}""",
                       theme=theme) as demo:
     gr.HTML(title)
-    gr.HTML("""<h3 align="center">🔥This Huggingface Gradio Demo provides you full access to GPT4 API (4096 token limit). 🎉🥳🎉You don't need any OPENAI API key🙌</h1>""")
+    gr.HTML("""<h3 align="center">🔥This Huggingface Gradio Demo provides you access to GPT4 API with System Messages. Please note that you would be needing an OPENAI API key for GPT4 access🙌</h1>""")
     gr.HTML(theme_addon_msg)
     gr.HTML('''<center><a href="https://huggingface.co/spaces/ysharma/ChatGPT4?duplicate=true"><img src="https://bit.ly/3gLdBN6" alt="Duplicate Space"></a>Duplicate the Space and run securely with your OpenAI API Key</center>''')
 
