@@ -10,11 +10,11 @@ API_URL = "https://api.openai.com/v1/chat/completions" #os.getenv("API_URL") + "
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY") 
 
 #Inferenec function
-def predict(system_msg, inputs, top_p, temperature, chat_counter, chatbot=[], history=[]):  
+def predict(openai_gpt4_key, system_msg, inputs, top_p, temperature, chat_counter, chatbot=[], history=[]):  
 
     headers = {
     "Content-Type": "application/json",
-    "Authorization": f"Bearer {OPENAI_API_KEY}"
+    "Authorization": f"Bearer {openai_gpt4_key}"  #Users will provide their own OPENAI_API_KEY 
     }
     print(f"system message is ^^ {system_msg}")
     if system_msg.strip() == '':
@@ -128,10 +128,18 @@ with gr.Blocks(css = """#col_container { margin-left: auto; margin-right: auto;}
     gr.HTML('''<center><a href="https://huggingface.co/spaces/ysharma/ChatGPT4?duplicate=true"><img src="https://bit.ly/3gLdBN6" alt="Duplicate Space"></a>Duplicate the Space and run securely with your OpenAI API Key</center>''')
 
     with gr.Column(elem_id = "col_container"):
-        #GPT4 API Key is provided by Huggingface 
-        with gr.Accordion(label="System message:", open=False):
-            system_msg = gr.Textbox(label="Instruct the AI Assistant to set its beaviour", info = system_msg_info, value="")
-            accordion_msg = gr.HTML(value="🚧 To set System message you will have to refresh the app", visible=False)
+        #Users need to provide their own GPT4 API key, it is no longer provided by Huggingface 
+        with gr.Row():
+            openai_gpt4_key = gr.Textbox(label="OpenAI GPT4 Key", value="", type="password", placeholder="sk..", info = "You have to provide your own GPT4 keys for this app to function properly",)
+            with gr.Accordion(label="System message:", open=False):
+                system_msg = gr.Textbox(label="Instruct the AI Assistant to set its beaviour", info = system_msg_info, value="",placeholder="Type here..")
+                accordion_msg = gr.HTML(value="🚧 To set System message you will have to refresh the app", visible=False)
+                          
+    #with gr.Column(elem_id = "col_container"):
+    #    #GPT4 API Key is provided by Huggingface 
+    #    with gr.Accordion(label="System message:", open=False):
+    #        system_msg = gr.Textbox(label="Instruct the AI Assistant to set its beaviour", info = system_msg_info, value="")
+    #        accordion_msg = gr.HTML(value="🚧 To set System message you will have to refresh the app", visible=False)
         chatbot = gr.Chatbot(label='GPT4', elem_id="chatbot")
         inputs = gr.Textbox(placeholder= "Hi there!", label= "Type an input and press Enter")
         state = gr.State([]) 
@@ -148,8 +156,8 @@ with gr.Blocks(css = """#col_container { margin-left: auto; margin-right: auto;}
             chat_counter = gr.Number(value=0, visible=False, precision=0)
 
     #Event handling
-    inputs.submit( predict, [system_msg, inputs, top_p, temperature, chat_counter, chatbot, state], [chatbot, state, chat_counter, server_status_code],)  #openai_api_key
-    b1.click( predict, [system_msg, inputs, top_p, temperature, chat_counter, chatbot, state], [chatbot, state, chat_counter, server_status_code],)  #openai_api_key
+    inputs.submit( predict, [openai_gpt4_key, system_msg, inputs, top_p, temperature, chat_counter, chatbot, state], [chatbot, state, chat_counter, server_status_code],)  #openai_api_key
+    b1.click( predict, [openai_gpt4_key, system_msg, inputs, top_p, temperature, chat_counter, chatbot, state], [chatbot, state, chat_counter, server_status_code],)  #openai_api_key
     
     inputs.submit(set_visible_false, [], [system_msg])
     b1.click(set_visible_false, [], [system_msg])
