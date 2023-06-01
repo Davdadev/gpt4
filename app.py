@@ -6,9 +6,6 @@ import requests
 #Streaming endpoint 
 API_URL = "https://api.openai.com/v1/chat/completions" #os.getenv("API_URL") + "/generate_stream"
 
-#Huggingface provided GPT4 OpenAI API Key 
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY") 
-
 #Inferenec function
 def predict(openai_gpt4_key, system_msg, inputs, top_p, temperature, chat_counter, chatbot=[], history=[]):  
 
