@@ -102,12 +102,6 @@ def set_visible_false():
 def set_visible_true():
     return gr.update(visible=True)
 
-#title = """<h1 align="center">🔥GPT4 with ChatCompletions API +🚀Gradio-Streaming</h1>"""
-#display message for themes feature
-#theme_addon_msg = """<center>🌟 Discover Gradio Themes with this Demo, featuring v3.22.0! Gradio v3.23.0 also enables seamless Theme sharing. You can develop or modify a theme, and send it to the hub using simple <code>theme.push_to_hub()</code>. 
-#<br>🏆Participate in Gradio's Theme Building Hackathon to exhibit your creative flair and win fabulous rewards! Join here - <a href="https://huggingface.co/Gradio-Themes" target="_blank">Gradio-Themes-Party🎨</a> 🏆</center>
-#"""
-
 title = """<h1 align="center">🔥GPT4 using Chat-Completions API & 🚀Gradio-Streaming</h1>"""
 #display message for themes feature
 theme_addon_msg = """<center>🌟 This Demo also introduces you to Gradio Themes. Discover more on Gradio website using our <a href="https://gradio.app/theming-guide/" target="_blank">Themeing-Guide🎨</a>! You can develop from scratch, modify an existing Gradio theme, and share your themes with community by uploading them to huggingface-hub easily using <code>theme.push_to_hub()</code>.</center>
@@ -136,11 +130,6 @@ with gr.Blocks(css = """#col_container { margin-left: auto; margin-right: auto;}
                 system_msg = gr.Textbox(label="Instruct the AI Assistant to set its beaviour", info = system_msg_info, value="",placeholder="Type here..")
                 accordion_msg = gr.HTML(value="🚧 To set System message you will have to refresh the app", visible=False)
                           
-    #with gr.Column(elem_id = "col_container"):
-    #    #GPT4 API Key is provided by Huggingface 
-    #    with gr.Accordion(label="System message:", open=False):
-    #        system_msg = gr.Textbox(label="Instruct the AI Assistant to set its beaviour", info = system_msg_info, value="")
-    #        accordion_msg = gr.HTML(value="🚧 To set System message you will have to refresh the app", visible=False)
         chatbot = gr.Chatbot(label='GPT4', elem_id="chatbot")
         inputs = gr.Textbox(placeholder= "Hi there!", label= "Type an input and press Enter")
         state = gr.State([]) 
